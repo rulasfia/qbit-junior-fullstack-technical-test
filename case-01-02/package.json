@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "prestart": "tsc index.ts --outDir ./dist/",
-    "start": "node ./dist/index.js"
+    "prestart": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "concurrently \"tsc --watch \" \"nodemon ./dist/index.js\""
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6"
+  },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/node": "^17.0.35",
+    "concurrently": "^7.2.1",
+    "nodemon": "^2.0.16",
     "typescript": "^4.7.2"
   }
 }

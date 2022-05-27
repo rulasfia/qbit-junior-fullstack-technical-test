@@ -1,31 +1,33 @@
-import * as readline from "readline";
-import { case01 } from "./case01";
-import { case02 } from "./case02";
+import type { Request, Response } from "express";
+import express from "express";
+import { engine } from "express-handlebars";
+import { case01 } from "./utils/case01";
+import { case02 } from "./utils/case02";
 
-/** setup readline CLI interface */
-const cli = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const main = async () => {
+  const app = express();
 
-/** function for invalid case input */
-const invalidCase = () => console.log("option not available");
+  app.use(express.urlencoded({ extended: true }));
 
-/** main function */
-const main = () => {
-  console.log("1. case 1");
-  console.log("2. case 2");
+  /** config template engine */
+  app.engine("handlebars", engine({ defaultLayout: "" }));
+  app.set("view engine", "handlebars");
+  app.set("views", "./views");
 
-  /** create prompt */
-  cli.question("what do you want to run? (1/2) ", (res) => {
-    if (res === "1") case01();
-    else if (res === "2") case02();
-    else invalidCase();
+  /** root / main route */
+  app.get("/", (req: Request, res: Response) => {
+    return res.render("index");
+  });
 
-    /** close readline */
-    cli.close();
-    return;
+  app.get("/case01", case01);
+  app.get("/case02", case02);
+
+  /** start server */
+  app.listen(4000, () => {
+    console.log("server running on http://localhost:4000");
   });
 };
 
-main();
+main().catch((err) => {
+  throw err;
+});
