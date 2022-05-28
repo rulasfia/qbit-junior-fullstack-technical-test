@@ -7,6 +7,7 @@ import { case02 } from "./utils/case02";
 const main = async () => {
   const app = express();
 
+  app.use(express.static("./public"));
   app.use(express.urlencoded({ extended: true }));
 
   /** config template engine */
@@ -15,7 +16,7 @@ const main = async () => {
   app.set("views", "./views");
 
   /** root / main route */
-  app.get("/", (req: Request, res: Response) => {
+  app.get("/", (_req: Request, res: Response) => {
     return res.render("index");
   });
 
