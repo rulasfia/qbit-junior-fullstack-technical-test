@@ -1,8 +1,7 @@
 import type { Request, Response } from "express";
-import type { IFruit } from "../data/dataC1";
 import { fruits } from "../data/dataC1";
 
-export const case01 = (req: Request, res: Response) => {
+export const case01 = (_req: Request, res: Response) => {
   console.log("Case 01");
 
   /** QUESTION 1 */
@@ -11,6 +10,8 @@ export const case01 = (req: Request, res: Response) => {
 
   /** QUESTION 2 */
   /** list of fruit type */
+  /** use Set to filter duplicate fruitType */
+  /** and turn it back to array using Array.from method */
   const fruitTypes = Array.from(
     new Set(fruits.map((fruit) => fruit.fruitType))
   );
@@ -42,7 +43,7 @@ export const case01 = (req: Request, res: Response) => {
 
   /** QUESTION 3 */
   /** total stock in each basket */
-  /** use reduce to create object, 
+  /** use reduce to create object,
    ** using the value of "fruitTypes" array as a key.
    ** each key in that object will return total stock.
    ** sum total stock with reduce method (0 as initial value).
@@ -56,6 +57,7 @@ export const case01 = (req: Request, res: Response) => {
   );
 
   return res.render("case01", {
+    title: "Case 01 |",
     Q1: { fruitNames },
     Q2: { fruitTypes, numberOfFruitBaskets, fruitByTypes },
     Q3: { stockOnEachBasket },

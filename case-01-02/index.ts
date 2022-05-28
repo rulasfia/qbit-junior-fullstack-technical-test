@@ -11,7 +11,7 @@ const main = async () => {
   app.use(express.urlencoded({ extended: true }));
 
   /** config template engine */
-  app.engine("handlebars", engine({ defaultLayout: "" }));
+  app.engine("handlebars", engine());
   app.set("view engine", "handlebars");
   app.set("views", "./views");
 
