@@ -17,3 +17,20 @@ nav {
 a {
   font-size: 1rem;
 }
+
+main {
+  max-width: 600px;
+  padding: 1rem 4rem;
+}
+
+.question {
+  margin-bottom: 1rem;
+}
+
+.answer {
+  margin-left: 2rem;
+}
+
+.answer > ul {
+  padding-left: 1.5rem;
+}

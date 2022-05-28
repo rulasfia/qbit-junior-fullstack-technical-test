@@ -15,8 +15,57 @@
 
     <hr />
 
+    <main>
+      <div class="question">
+        <p>1. Buah apa saja yang dimiliki Andi? (fruitName)</p>
+        <ul class="answer">
+          {{#each Q1.fruitNames}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="question">
+        <p>
+          2. Andi memisahkan buahnya menjadi beberapa wadah berdasarkan tipe
+          buah (fruitType). Berapa jumlah wadah yang dibutuhkan? Dan ada buah
+          apa saja di masing-masing wadah?
+        </p>
+        <ul class="answer">
+          <li>Type Buah:</li>
+          <ul>
+            {{#each Q2.fruitTypes}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          <li>Jumlah Wadah: {{Q2.numberOfFruitBaskets}}</li>
+          <li>Buah pada masing-masing wadah:</li>
+          <ul>
+            {{#each Q2.fruitByTypes}}
+              <li>{{@key}}:
+                {{#each this}}
+                  {{fruitName~}}
+                  {{#if @last}}. {{else}}, {{/if}}
+                {{/each}}
+              </li>
+            {{/each}}
+          </ul>
+        </ul>
+      </div>
+
+      <div class="question">
+        <p>3. Berapa total stock buah yang ada di masing-masing wadah?</p>
+        <ul class="answer">
+          {{#each Q3.stockOnEachBasket}}
+            <li>{{@key}}: {{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+
+    </main>
+
   </body>
   <script>
-    console.log(JSON.stringify(fruitNames))
+
   </script>
 </html>

@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import type { IFruit } from "../data/dataC1";
 import { fruits } from "../data/dataC1";
 
 export const case01 = (req: Request, res: Response) => {
@@ -13,34 +14,48 @@ export const case01 = (req: Request, res: Response) => {
   const fruitTypes = Array.from(
     new Set(fruits.map((fruit) => fruit.fruitType))
   );
+
   /** number of basket for each fruit type */
   const numberOfFruitBaskets = fruitTypes.length;
+
   /** list of fruit on each basket base on it's type */
-  // const fruitByTypes = fruitTypes.map((ftype) => ({
-  //   [ftype]: fruits.filter((fruit) => fruit.fruitType === ftype),
-  // }));
-  const fruitByTypes = fruitTypes.map((ftype) =>
-    fruits.filter((fruit) => fruit.fruitType === ftype)
-  );
+  /** create type for "fruitByTypes" variable
+   ** this type use value of "fruitTypes" array as key
+   ** and type of "fruits" as type of the value
+   */
+  type FruitByTypes = {
+    [K in typeof fruitTypes[number]]: typeof fruits;
+  };
+
+  /** using reduce array method :
+   *  - create object, using the value of "fruitTypes" array as a key.
+   *  - that object contain filtered "fruits" by it's type.
+   *  - use empty object as initial value for reduce method
+   */
+  const fruitByTypes = fruitTypes.reduce(
+    (prevVal, currVal) => ({
+      ...prevVal,
+      [currVal]: fruits.filter((fruit) => fruit.fruitType === currVal),
+    }),
+    {}
+  ) as FruitByTypes;
 
   /** QUESTION 3 */
   /** total stock in each basket */
-  const stockOnEachBasket = fruitByTypes.map((ftype, index) => {
-    /** use fruitTypes[index] as object key
-     ** use array.reduce function to sum total stock
-     ** with 0 as initial value
-     */
-    // return ftype[fruitTypes[index]].reduce(
-    //   (prevVal, currVal) => prevVal + currVal.stock,
-    //   0
-    // );
-    return ftype.reduce(
-      (prevVal, currVal) => prevVal + currVal.stock,
-      0
-    );
-  });
+  /** use reduce to create object, 
+   ** using the value of "fruitTypes" array as a key.
+   ** each key in that object will return total stock.
+   ** sum total stock with reduce method (0 as initial value).
+   */
+  const stockOnEachBasket = fruitTypes.reduce(
+    (prevVal, currVal) => ({
+      ...prevVal,
+      [currVal]: fruitByTypes[currVal].reduce((pv, cv) => pv + cv.stock, 0),
+    }),
+    {}
+  );
 
-  return res.json({
+  return res.render("case01", {
     Q1: { fruitNames },
     Q2: { fruitTypes, numberOfFruitBaskets, fruitByTypes },
     Q3: { stockOnEachBasket },
