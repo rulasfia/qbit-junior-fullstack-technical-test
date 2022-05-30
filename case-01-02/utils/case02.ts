@@ -2,13 +2,13 @@ import type { Request, Response } from "express";
 import { comments } from "../data/dataC2";
 
 type IParamData = typeof comments | undefined;
-type IParamAction = (data: IParamData) => number;
+type IParamNextAction = (data: IParamData) => number;
 
-const sumSubcomment = (data: IParamData, action?: IParamAction) => {
+const sumSubcomment = (data: IParamData, nextAct?: IParamNextAction) => {
   /** if no data provided or the data provided is 'falsy', return 0 */
   if (!data) return 0;
-  /** if there is action function specfied, use it to get value from cv */
-  if (action) return data.reduce((pv, cv) => pv + action(cv.replies), 0);
+  /** if there is next action function specfied, use it to get value from cv */
+  if (nextAct) return data.reduce((pv, cv) => pv + nextAct(cv.replies), 0);
   /** if none of those, return replies array length */
   return data.reduce((pv, cv) => pv + (cv.replies ? cv.replies?.length : 0), 0);
 };

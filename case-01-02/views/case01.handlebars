@@ -49,7 +49,9 @@
   <div class="question">
     <p>4. Apakah ada komentar terkait kasus di atas?</p>
     <ul class="answer">
-      <li>...</li>
+      {{#each Q4.myComments}}
+        <li>{{this}}</li>
+      {{/each}}
     </ul>
   </div>
 </main>
