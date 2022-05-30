@@ -58,7 +58,7 @@ const toggleMenu = () => (showMenu.value = !showMenu.value);
           v-for="menu in NavMenu"
           v-bind:key="menu.slug"
           :to="menu.slug"
-          class="rounded-md border-dashed border-transparent p-3 text-base font-medium text-gray-700 hover:border-b-primary-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-600 md:rounded-none md:border-b-2 md:py-1.5 md:px-2.5"
+          class="rounded-md border-transparent p-3 text-base font-medium text-gray-700 hover:border-b-primary-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-600 md:rounded-none md:border-b-2 md:py-1.5 md:px-2.5"
         >
           {{ menu.title }}
         </RouterLink>

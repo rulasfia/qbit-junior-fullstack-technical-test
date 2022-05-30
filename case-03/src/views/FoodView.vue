@@ -4,6 +4,7 @@ import DangerAlert from "@/components/shared/alert/DangerAlert.vue";
 import ItemList from "@/components/Food/ItemList.vue";
 import BreadCrumb from "@/components/shared/breadcrumb/BreadCrumb.vue";
 import { useQuery } from "@/composables/useQuery";
+import FooterSection from "../components/Homepage/FooterSection.vue";
 import type { Categories } from "@/utils/types/FoodCategoryTypes";
 
 const { data, error } = useQuery<Categories>("/categories.php");
@@ -33,4 +34,5 @@ const { data, error } = useQuery<Categories>("/categories.php");
       <ItemList :data="data.categories" />
     </div>
   </main>
+  <FooterSection />
 </template>

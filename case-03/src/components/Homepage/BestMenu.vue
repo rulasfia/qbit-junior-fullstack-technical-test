@@ -13,13 +13,16 @@ const bm3 = useGetBestMeal(52960);
   <section class="container relative mx-auto px-6 py-10 md:px-0 md:py-12">
     <h2 class="mb-6 text-center text-2xl font-bold">Our Best Menu</h2>
     <!-- loading -->
-    <div v-if="!bm1.data && !bm2.data && !bm3.data" class="mx-auto w-full py-8">
+    <div
+      v-if="!bm1.data.value && !bm2.data.value && !bm3.data.value"
+      class="mx-auto w-full py-8"
+    >
       <LoadingSpinner />
     </div>
 
     <!-- success -->
     <div
-      v-if="bm1.data && bm2.data && bm3.data"
+      v-if="bm1.data.value && bm2.data.value && bm3.data.value"
       class="grid grid-cols-1 items-center justify-between divide-x-0 divide-y-2 md:grid-cols-3 md:divide-y-0 md:divide-x-2"
     >
       <!-- bm 1 -->
@@ -35,7 +38,7 @@ const bm3 = useGetBestMeal(52960);
         >
           {{ bm1.data.value?.meals[0].strMeal }}
         </RouterLink>
-        <p class="mt text-center">
+        <p class="text-center text-sm text-gray-600">
           {{ bm1.data.value?.meals[0].strArea }} Culinary
         </p>
       </div>
@@ -52,7 +55,7 @@ const bm3 = useGetBestMeal(52960);
         >
           {{ bm2.data.value?.meals[0].strMeal }}
         </RouterLink>
-        <p class="mt text-center">
+        <p class="text-center text-sm text-gray-600">
           {{ bm2.data.value?.meals[0].strArea }} Culinary
         </p>
       </div>
@@ -69,7 +72,7 @@ const bm3 = useGetBestMeal(52960);
         >
           {{ bm3.data.value?.meals[0].strMeal }}
         </RouterLink>
-        <p class="mt text-center">
+        <p class="text-center text-sm text-gray-600">
           {{ bm3.data.value?.meals[0].strArea }} Culinary
         </p>
       </div>
