@@ -28,10 +28,4 @@ export const case02 = (req: Request, res: Response) => {
     SubComments,
     SubSubcomments,
   });
-  // res.json({
-  //   totalMainComments,
-  //   totalSubComments,
-  //   totalSubSubcomments,
-  //   totalComment: totalMainComments + totalSubComments + totalSubSubcomments,
-  // });
 };
