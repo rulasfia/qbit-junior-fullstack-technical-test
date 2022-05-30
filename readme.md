@@ -11,8 +11,8 @@ Step-step to run case 1 & 2:
 
 To see the main code for case 1 & case 2, you can go directly to:
 
-- case 1 : [this file]("case-01-02/utils/case01.ts")
-- case 2 : [this file]("case-01-02/utils/case02.ts")
+- case 1 : [this file](case-01-02/utils/case01.ts)
+- case 2 : [this file](case-01-02/utils/case02.ts)
 
 ---
 
